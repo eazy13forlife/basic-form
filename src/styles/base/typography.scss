@@ -1,7 +1,17 @@
 .body-text {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-regular);
 }
 
 .subject-text {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-350);
+  font-weight: var(--fw-medium);
 }
+
 .notification-text {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
 }

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const App = () => {
   return (
     <div className="Form">
-      <p>hey</p>
+      <p className="notification-text color-error">hey</p>
+      <p className="subject-text color-grey">Subject text</p>
     </div>
   );
 };

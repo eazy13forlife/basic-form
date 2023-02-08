@@ -2,8 +2,12 @@
   //color
   --color-primary: 48, 13, 56;
   --color-secondary: 251, 169, 25;
+
   --color-error: red;
   --color-success: 46, 204, 113;
+
+  --color-dark: 0, 0, 0;
+  --color-light: 255, 255, 255;
 
   //font-family
   --ff-primary: "Open Sans", sans-serif;
@@ -11,7 +15,14 @@
   //font-size
   --fs-500: 2.4rem;
   --fs-400: 1.8rem;
-  --fs-300: 1.2rem;
+  --fs-350: 1.6rem;
+  --fs-300: 1.4rem;
+
+  //font-weight
+  --fw-bold: 600;
+  --fw-medium: 500;
+  --fw-regular: 400;
+  --fw-light: 300;
 }
 
 html {
