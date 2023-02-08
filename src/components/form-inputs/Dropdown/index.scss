@@ -1,0 +1,36 @@
+.Dropdown {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+
+  &__window {
+    margin-top: 1rem;
+    width: 100%;
+    background-color: rgba(var(--color-light), 1);
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(var(--color-primary), 0.4);
+    cursor: pointer;
+  }
+
+  &__icon {
+    color: rgba(var(--color-secondary), 1);
+  }
+  &__options {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(var(--color-primary), 0.5);
+  }
+  &__option {
+    background-color: transparent;
+    text-align: left;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: none;
+    &:hover {
+      background-color: rgba(var(--color-dark), 0.04);
+    }
+  }
+}

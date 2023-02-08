@@ -24,4 +24,12 @@
       margin-top: 5rem;
     }
   }
+  &__dropdowns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .Dropdown {
+      flex: 1 0 0;
+    }
+  }
 }

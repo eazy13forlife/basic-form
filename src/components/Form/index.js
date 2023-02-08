@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import validator from "validator";
 
 import { onFormSubmit, checkFieldError } from "./helpers";
+import useDropdownOptions from "./useDropdownOptions";
+import Dropdown from "../form-inputs/Dropdown";
 import TextGroup from "../form-inputs/TextGroup";
 import "./index.scss";
 const Form = () => {
+  const { occupations, states } = useDropdownOptions();
+
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -14,6 +18,10 @@ const Form = () => {
   });
 
   const [formErrors, setFormErrors] = useState({});
+
+  useEffect(() => {
+    const getOccupations = () => {};
+  }, []);
 
   // //returns an updated errors object based on the fieldName we're
   // //checking for an error in
@@ -103,6 +111,28 @@ const Form = () => {
                 "password",
                 setFormErrors
               );
+            }}
+          />
+        </div>
+
+        <div className="Form__group">
+          <Dropdown
+            options={occupations}
+            title="Select your occupation"
+            value={formValues.occupation}
+            onChange={(value) => {
+              setFormValues({ ...formValues, occupation: value });
+            }}
+          />
+        </div>
+
+        <div className="Form__group">
+          <Dropdown
+            options={states}
+            title="Select your state"
+            value={formValues.state}
+            onChange={(value) => {
+              setFormValues({ ...formValues, state: value });
             }}
           />
         </div>
