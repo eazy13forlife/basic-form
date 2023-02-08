@@ -1,0 +1,47 @@
+.TextGroup {
+  position: relative;
+  z-index: 1;
+  border-bottom: var(--border-style) transparent;
+  transition: border-bottom 350ms ease-in;
+  &__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(var(--color-light), 1);
+    width: 100%;
+    transition: top 300ms ease-in;
+  }
+  &__input {
+    width: 100%;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    z-index: 2;
+    &:focus {
+      outline: none;
+    }
+  }
+  &__error {
+    position: absolute;
+    left: 0;
+    top: 100%;
+  }
+  &--move-label {
+    .TextGroup__label {
+      top: -2rem;
+    }
+  }
+  &--focus {
+    border-bottom: var(--border-style) rgba(var(--color-secondary), 1);
+  }
+  &--untouched {
+    border-bottom: var(--border-style) var(--color-grey);
+  }
+  &--success {
+    border-bottom: var(--border-style) rgba(var(--color-success), 1);
+  }
+  &--error {
+    border-bottom: var(--border-style) rgba(var(--color-error), 1);
+  }
+}

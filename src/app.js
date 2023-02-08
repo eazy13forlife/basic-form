@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-
+import Form from "./components/Form";
 const App = () => {
   return (
-    <div className="Form">
-      <p className="notification-text color-error">hey</p>
-      <p className="subject-text color-grey">Subject text</p>
+    <div className="App">
+      <Form />
     </div>
   );
 };

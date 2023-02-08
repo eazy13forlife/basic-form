@@ -3,10 +3,11 @@
   --color-primary: 48, 13, 56;
   --color-secondary: 251, 169, 25;
 
-  --color-error: red;
+  --color-error: 255, 0, 0;
   --color-success: 46, 204, 113;
 
   --color-dark: 0, 0, 0;
+  --color-grey: rgba(var(--color-dark), 0.3);
   --color-light: 255, 255, 255;
 
   //font-family
@@ -23,6 +24,9 @@
   --fw-medium: 500;
   --fw-regular: 400;
   --fw-light: 300;
+
+  //border
+  --border-style: 2px solid;
 }
 
 html {
@@ -41,7 +45,9 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   box-sizing: border-box;
-  font-size: 1.4rem;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-regular);
 }
 
 img {
