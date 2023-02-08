@@ -1,8 +1,7 @@
 .Dropdown {
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
-
+  position: relative;
   &__window {
     margin-top: 1rem;
     width: 100%;
@@ -32,5 +31,10 @@
     &:hover {
       background-color: rgba(var(--color-dark), 0.04);
     }
+  }
+  &__error {
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
 }

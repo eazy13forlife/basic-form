@@ -53,7 +53,7 @@ const TextGroup = ({
       </label>
 
       <span className="TextGroup__error color-error text-notification">
-        {visited && error ? error : null}
+        {error ? error : null}
       </span>
     </div>
   );

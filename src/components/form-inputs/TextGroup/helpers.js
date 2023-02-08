@@ -1,6 +1,11 @@
 //Returns the class name that controls  border color
 const getBorderClass = (visited, isFocused, error) => {
-  //if input has not been visited
+  //input has an error is first priority, whether visited or not
+  if (error) {
+    return "TextGroup--error";
+  }
+
+  //if input has not been visited at all
   if (!visited) {
     return "TextGroup--untouched";
   }
@@ -8,11 +13,6 @@ const getBorderClass = (visited, isFocused, error) => {
   //if input has focus
   if (isFocused) {
     return "TextGroup--focus";
-  }
-
-  //if input has error
-  if (error) {
-    return "TextGroup--error";
   }
 
   //if input does not have error

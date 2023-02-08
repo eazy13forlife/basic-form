@@ -19,6 +19,22 @@ const Form = () => {
 
   const [formErrors, setFormErrors] = useState({});
 
+  const [clickSubmit, setClickSubmit] = useState(false);
+
+  const [successMessage, setSuccessMessage] = useState("");
+
+  //when user clicks submit, if no form errors, display success message.
+  useEffect(() => {
+    if (clickSubmit) {
+      if (!Object.values(formErrors).length) {
+        setSuccessMessage("Congrats on creating you account!");
+      } else {
+        setSuccessMessage("");
+      }
+      setClickSubmit(false);
+    }
+  }, [clickSubmit]);
+
   // //returns an updated errors object based on the fieldName we're
   // //checking for an error in
   // const getErrors = (errors, fieldName) => {
@@ -56,10 +72,20 @@ const Form = () => {
       <div className="Form__header text-header-1 color-primary">
         fetch rewards
       </div>
+
       <div className="Form__create-account text-header-2">
         Create an Account
       </div>
-      <form className="Form__form-response">
+
+      <p>{successMessage ? successMessage : null}</p>
+      <form
+        className="Form__form-response"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onFormSubmit(formValues, formErrors, setFormErrors);
+          setClickSubmit(true);
+        }}
+      >
         <div className="Form__group">
           <TextGroup
             name="name"
@@ -115,9 +141,18 @@ const Form = () => {
           <Dropdown
             options={occupations}
             title="Select your occupation"
+            error={formErrors.occupation}
             value={formValues.occupation}
             onChange={(value) => {
               setFormValues({ ...formValues, occupation: value });
+            }}
+            checkFieldError={() => {
+              checkFieldError(
+                formValues,
+                formErrors,
+                "occupation",
+                setFormErrors
+              );
             }}
           />
         </div>
@@ -126,11 +161,21 @@ const Form = () => {
           <Dropdown
             options={states}
             title="Select your state"
+            error={formErrors.state}
             value={formValues.state}
+            checkFieldError={() => {
+              checkFieldError(formValues, formErrors, "state", setFormErrors);
+            }}
             onChange={(value) => {
               setFormValues({ ...formValues, state: value });
             }}
           />
+        </div>
+
+        <div className="Form__group">
+          <button type="submit" className="button text-header-2">
+            Submit
+          </button>
         </div>
       </form>
     </div>

@@ -3,7 +3,14 @@ import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
 import "./index.scss";
 
-const Dropdown = ({ options, title, onChange, value }) => {
+const Dropdown = ({
+  options,
+  title,
+  onChange,
+  value,
+  error,
+  checkFieldError,
+}) => {
   //boolean that lets us know if dropdown options are showing or not
   const [showOptions, setShowOptions] = useState(false);
 
@@ -11,8 +18,10 @@ const Dropdown = ({ options, title, onChange, value }) => {
   //user is taking advantage of search feature
   const [optionsToShow, setOptionsToShow] = useState(options);
 
-  //the value user is searching for inside dropdown
+  //value the user is searching for inside dropdown
   const [searchValue, setSearchValue] = useState("");
+
+  const [visited, setVisited] = useState(false);
 
   const onOptionClick = (value) => {
     onChange(value);
@@ -24,6 +33,13 @@ const Dropdown = ({ options, title, onChange, value }) => {
   useEffect(() => {
     setOptionsToShow(options);
   }, [options]);
+
+  //if onBlur(visited and closed), check for a field error
+  useEffect(() => {
+    if (visited && !showOptions) {
+      checkFieldError();
+    }
+  }, [showOptions]);
 
   //whenever the dropdown search value changes, filter out the
   // options from our options prop that contain the search value
@@ -46,13 +62,19 @@ const Dropdown = ({ options, title, onChange, value }) => {
           onOptionClick(option);
         }}
       >
-        <p>{option}</p>
+        <span>{option}</span>
       </button>
     );
   });
 
   return (
-    <div className="Dropdown color-primary">
+    <div
+      className="Dropdown color-primary"
+      onClick={(e) => {
+        setVisited(true);
+        e.stopPropagation();
+      }}
+    >
       <label className="text-body color-grey" htmlFor={title}>
         {title}
       </label>
@@ -87,6 +109,10 @@ const Dropdown = ({ options, title, onChange, value }) => {
           {renderedOptions.length ? renderedOptions : "Not found"}
         </div>
       ) : null}
+
+      <span className="Dropdown__error color-error text-notification">
+        {error ? error : null}
+      </span>
     </div>
   );
 };

@@ -1,0 +1,18 @@
+.button {
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: rgba(var(--color-secondary), 1);
+  padding: 1.2rem;
+  border: none;
+  border: var(--border-style) rgba(var(--color-primary), 1);
+  box-shadow: 0rem 0.2rem 0.05rem rgba(var(--color-primary), 1);
+  border-radius: 20px;
+  width: 100%;
+  &:hover {
+    background-color: rgba(var(--color-primary), 1);
+    color: rgba(var(--color-secondary), 1);
+  }
+  &:active {
+    transform: translatey(0.5rem);
+  }
+}
