@@ -1,10 +1,15 @@
+@use "../../styles/abstracts";
+
 .Form {
   border-radius: 10px;
   overflow: hidden;
-  width: 40%;
+  width: 500px;
   background-color: rgba(var(--color-light), 1);
   min-height: 90vh;
   box-shadow: 0rem 3rem 5rem rgba(var(--color-light), 0.2);
+  @include abstracts.respondMax(abstracts.$tablet-small) {
+    width: 100%;
+  }
   &__logo {
     background-color: rgba(var(--color-secondary), 1);
     letter-spacing: 0.2rem;

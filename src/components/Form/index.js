@@ -19,11 +19,16 @@ const Form = () => {
 
   const [formErrors, setFormErrors] = useState({});
 
+  //boolean that lets us know if we just clicked submit on form
   const [clickSubmit, setClickSubmit] = useState(false);
 
+  //message after successfully submitting form
   const [successMessage, setSuccessMessage] = useState("");
 
-  //when user clicks submit, if no form errors, display success message.
+  //when click submit has changed and it now has a value of true,
+  //if there are no form errors, update success message.Otherwise,
+  // remove success message.
+  //we need to set clickSubmit to false again for repeated submit events
   useEffect(() => {
     if (clickSubmit) {
       if (!Object.values(formErrors).length) {
@@ -77,7 +82,6 @@ const Form = () => {
         <h1 className="text-header-2">Create an Account</h1>
       </header>
 
-      <p>{successMessage ? successMessage : null}</p>
       <form
         className="Form__form-response"
         onSubmit={(e) => {
@@ -170,6 +174,12 @@ const Form = () => {
               setFormValues({ ...formValues, state: value });
             }}
           />
+        </div>
+
+        <div className="Form__group">
+          <p className="text-align-center">
+            {successMessage ? successMessage : null}
+          </p>
         </div>
 
         <div className="Form__group">

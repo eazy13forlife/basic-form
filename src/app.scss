@@ -1,3 +1,5 @@
+@use "./styles/abstracts";
+
 .App {
   display: flex;
   justify-content: center;
@@ -5,4 +7,7 @@
   background-color: rgba(var(--color-primary), 1);
   min-height: 100vh;
   padding: 4rem 0rem;
+  @include abstracts.respondMax(abstracts.$tablet-small) {
+    padding: 1rem;
+  }
 }
