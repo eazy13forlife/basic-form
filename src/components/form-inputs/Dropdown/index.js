@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
 import "./index.scss";
@@ -6,12 +6,28 @@ import "./index.scss";
 const Dropdown = ({ options, title, onChange, value }) => {
   const [showOptions, setShowOptions] = useState(false);
 
+  const [optionsToShow, setOptionsToShow] = useState(options);
+
+  const [searchValue, setSearchValue] = useState("");
+
   const onOptionClick = (value) => {
     onChange(value);
     setShowOptions(false);
   };
 
-  const renderedOptions = options.map((option, index) => {
+  useEffect(() => {
+    setOptionsToShow(options);
+  }, [options]);
+
+  useEffect(() => {
+    const filteredResults = options.filter((value) => {
+      return value.toLowerCase().includes(searchValue.toLowerCase());
+    });
+
+    setOptionsToShow(filteredResults);
+  }, [searchValue]);
+
+  const renderedOptions = optionsToShow.map((option, index) => {
     return (
       <button
         className="Dropdown__option"
@@ -48,7 +64,18 @@ const Dropdown = ({ options, title, onChange, value }) => {
       </button>
 
       {showOptions ? (
-        <div className="Dropdown__options text-body">{renderedOptions}</div>
+        <div className="Dropdown__options text-body">
+          <input
+            type="text"
+            className="Dropdown__option"
+            placeholder="Search..."
+            value={searchValue}
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+            }}
+          />
+          {renderedOptions}
+        </div>
       ) : null}
     </div>
   );

@@ -19,10 +19,6 @@ const Form = () => {
 
   const [formErrors, setFormErrors] = useState({});
 
-  useEffect(() => {
-    const getOccupations = () => {};
-  }, []);
-
   // //returns an updated errors object based on the fieldName we're
   // //checking for an error in
   // const getErrors = (errors, fieldName) => {
