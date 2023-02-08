@@ -4,6 +4,7 @@ import { getBorderClass, getLabelClass } from "./helpers";
 import "./index.scss";
 
 const TextGroup = ({
+  type,
   name,
   label,
   error,
@@ -38,7 +39,7 @@ const TextGroup = ({
       )} ${getLabelClass(value, isFocused)}`}
     >
       <input
-        type="text"
+        type={type}
         className="TextGroup__input"
         name={name}
         value={value}
@@ -47,7 +48,9 @@ const TextGroup = ({
         onBlur={onInputBlur}
       />
 
-      <label className="TextGroup__label">{label}</label>
+      <label className="TextGroup__label text-subject color-grey">
+        {label}
+      </label>
 
       <span className="TextGroup__error color-error text-notification">
         {visited && error ? error : null}
@@ -56,4 +59,7 @@ const TextGroup = ({
   );
 };
 
+TextGroup.defaultProps = {
+  type: "text",
+};
 export default TextGroup;

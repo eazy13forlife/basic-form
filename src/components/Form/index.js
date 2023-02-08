@@ -3,7 +3,7 @@ import validator from "validator";
 
 import { onFormSubmit, checkFieldError } from "./helpers";
 import TextGroup from "../form-inputs/TextGroup";
-
+import "./index.scss";
 const Form = () => {
   const [formValues, setFormValues] = useState({
     name: "",
@@ -48,20 +48,66 @@ const Form = () => {
   // };
 
   return (
-    <form className="Form">
-      <TextGroup
-        name="name"
-        label=" Full Name"
-        value={formValues.name}
-        error={formErrors.name}
-        onChange={(e) => {
-          setFormValues({ ...formValues, name: e.target.value });
-        }}
-        checkFieldError={() => {
-          checkFieldError(formValues, formErrors, "name", setFormErrors);
-        }}
-      />
-    </form>
+    <div className="Form">
+      <div className="Form__header text-header-1 color-primary">
+        fetch rewards
+      </div>
+      <div className="Form__create-account text-header-2">
+        Create an Account
+      </div>
+      <form className="Form__form-response">
+        <div className="Form__group">
+          <TextGroup
+            name="name"
+            label=" Full Name"
+            value={formValues.name}
+            error={formErrors.name}
+            onChange={(e) => {
+              setFormValues({ ...formValues, name: e.target.value });
+            }}
+            checkFieldError={() => {
+              checkFieldError(formValues, formErrors, "name", setFormErrors);
+            }}
+          />
+        </div>
+
+        <div className="Form__group">
+          <TextGroup
+            name="email"
+            label=" Email"
+            value={formValues.email}
+            error={formErrors.email}
+            onChange={(e) => {
+              setFormValues({ ...formValues, email: e.target.value });
+            }}
+            checkFieldError={() => {
+              checkFieldError(formValues, formErrors, "email", setFormErrors);
+            }}
+          />
+        </div>
+
+        <div className="Form__group">
+          <TextGroup
+            type="password"
+            name="password"
+            label="Password"
+            value={formValues.password}
+            error={formErrors.password}
+            onChange={(e) => {
+              setFormValues({ ...formValues, password: e.target.value });
+            }}
+            checkFieldError={() => {
+              checkFieldError(
+                formValues,
+                formErrors,
+                "password",
+                setFormErrors
+              );
+            }}
+          />
+        </div>
+      </form>
+    </div>
   );
 };
 

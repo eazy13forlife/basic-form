@@ -1,17 +1,29 @@
 .text-body {
-  font-family: var(--ff-primary);
+  font-family: var(--ff-secondary);
   font-size: var(--fs-400);
-  font-weight: var(--fw-regular);
+  font-weight: var(--fw-s-regular);
 }
 
 .text-subject {
-  font-family: var(--ff-primary);
+  font-family: var(--ff-secondary);
   font-size: var(--fs-350);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-s-medium);
 }
 
 .text-notification {
-  font-family: var(--ff-primary);
+  font-family: var(--ff-secondary);
   font-size: var(--fs-300);
-  font-weight: var(--fw-regular);
+  font-weight: var(--fw-s-regular);
+}
+
+.text-header-1 {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-p-bold);
+}
+
+.text-header-2 {
+  font-family: var(--ff-secondary);
+  font-size: var(--fs-450);
+  font-weight: var(--fw-s-bold);
 }

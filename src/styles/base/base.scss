@@ -7,24 +7,27 @@
   --color-success: 46, 204, 113;
 
   --color-dark: 0, 0, 0;
-  --color-grey: rgba(var(--color-dark), 0.3);
+  --color-grey: rgba(var(--color-dark), 0.2);
   --color-light: 255, 255, 255;
 
   //font-family
-  --ff-primary: "Open Sans", sans-serif;
+  --ff-primary: "Syne", sans-serif;
+  --ff-secondary: "Open Sans", sans-serif;
 
   //font-size
-  --fs-500: 2.4rem;
+  --fs-500: 2.6rem;
+  --fs-450: 2rem;
   --fs-400: 1.8rem;
   --fs-350: 1.6rem;
   --fs-300: 1.4rem;
 
   //font-weight
-  --fw-bold: 600;
-  --fw-medium: 500;
-  --fw-regular: 400;
-  --fw-light: 300;
+  --fw-s-bold: 600;
+  --fw-s-medium: 500;
+  --fw-s-regular: 400;
+  --fw-s-light: 300;
 
+  --fw-p-bold: 600;
   //border
   --border-style: 2px solid;
 }
@@ -45,7 +48,7 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   box-sizing: border-box;
-  font-family: var(--ff-primary);
+  font-family: var(--ff-secondary);
   font-size: var(--fs-400);
   font-weight: var(--fw-regular);
 }
