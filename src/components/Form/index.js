@@ -69,13 +69,13 @@ const Form = () => {
 
   return (
     <div className="Form">
-      <div className="Form__header text-header-1 color-primary">
+      <div className="Form__logo text-header-1 color-primary">
         fetch rewards
       </div>
 
-      <div className="Form__create-account text-header-2">
-        Create an Account
-      </div>
+      <header className="Form__create-account">
+        <h1 className="text-header-2">Create an Account</h1>
+      </header>
 
       <p>{successMessage ? successMessage : null}</p>
       <form

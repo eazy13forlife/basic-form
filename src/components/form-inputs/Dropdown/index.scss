@@ -10,8 +10,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid rgba(var(--color-primary), 0.4);
+    border: var(--border-style) transparent;
     cursor: pointer;
+    transition: border 200ms ease-in;
+    &:focus {
+      outline: none;
+    }
+    &--untouched {
+      border: var(--border-style) rgba(var(--color-primary), 0.4);
+    }
+    &--focus {
+      border: var(--border-style) rgba(var(--color-secondary), 1);
+    }
+    &--success {
+      border: var(--border-style) rgba(var(--color-success), 1);
+    }
+    &--error {
+      border: var(--border-style) rgba(var(--color-error), 1);
+    }
   }
 
   &__icon {

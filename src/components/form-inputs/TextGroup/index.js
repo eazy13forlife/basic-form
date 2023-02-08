@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { getBorderClass, getLabelClass } from "./helpers";
+import { getBorderClass } from "../helpers";
+import { classNames, getLabelClass } from "./helpers";
 import "./index.scss";
 
 const TextGroup = ({
@@ -12,10 +13,12 @@ const TextGroup = ({
   onChange,
   checkFieldError,
 }) => {
-  //determines if input field has focus
+  //boolean that determines if input field has focus. Needed for
+  //getBorderClass and getLabelClass functions
   const [isFocused, setIsFocused] = useState(false);
 
-  //determines if input field has been visited once
+  //boolean that determines if input field has been visited once.
+  //Needed for getBorderClass and getLabelClass functions
   const [visited, setVisited] = useState(false);
 
   const onInputFocus = () => {
@@ -27,6 +30,7 @@ const TextGroup = ({
 
   const onInputBlur = () => {
     setIsFocused(false);
+
     checkFieldError(name);
   };
 
@@ -35,7 +39,8 @@ const TextGroup = ({
       className={`TextGroup ${getBorderClass(
         visited,
         isFocused,
-        error
+        error,
+        classNames
       )} ${getLabelClass(value, isFocused)}`}
     >
       <input
