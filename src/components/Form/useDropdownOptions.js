@@ -16,7 +16,7 @@ const useDropdownOptions = () => {
       setOccupations(response.data.occupations);
 
       //States data is stored inside objects, so unpack and place
-      //plainly inside a statesArray
+      //plainly inside statesArray
       const statesArray = [];
 
       response.data.states.forEach((stateObject) => {

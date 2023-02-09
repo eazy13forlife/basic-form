@@ -27,11 +27,11 @@ const Form = () => {
   //message after successfully submitting form
   const [successMessage, setSuccessMessage] = useState("");
 
-  //When fom is submitted, we want to validate all fields and update
-  //the formErrors state. Since you won't get results of whether
-  // there are form errors until this function completes,  a
-  //clickSubmit indicator alerts us and then we can use useEffect
-  // to decide whether to send form values to backend
+  //Validates all form fields and updates the formErrors state.
+  // Since results of whether there are form errors won't be known
+  // until this function completes, a clickSubmit indicator alerts 
+  //us form has been submitted and then we can use useEffect to
+  // decide whether to send form values to backend
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -40,13 +40,13 @@ const Form = () => {
     setClickSubmit(true);
   };
 
-  //Tests to see if a formField has an error. Run after a form
-  // field has been visited
+  //Checks to see if a formField has an error. Should be run after a
+  // form field has been visited
   const validate = (fieldName) => {
     validateField(formValues, formErrors, fieldName, setFormErrors);
   };
 
-  //Update the form value when field changes values
+  //Updates the form value when form field changes values
   const onFieldChange = (fieldName, value) => {
     setFormValues({ ...formValues, [fieldName]: value });
   };
