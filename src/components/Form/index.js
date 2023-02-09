@@ -25,6 +25,9 @@ const Form = () => {
   //message after successfully submitting form
   const [successMessage, setSuccessMessage] = useState("");
 
+  //since you won't get results of whether there are form errors until this function completes,  a clickSubmit indicator alerts
+  //us and then we can use useEffect to decide whether to send
+  //form values.
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -33,9 +36,16 @@ const Form = () => {
     setClickSubmit(true);
   };
 
-  // const checkFieldError = (fieldName) => {
-  //   checkFieldError(formValues, formErrors, fieldName, setFormErrors);
-  // };
+  //Tests to see if formField has an error.It is run after a form
+  // field has been visited
+  const checkAndUpdateFieldError = (fieldName) => {
+    checkFieldError(formValues, formErrors, fieldName, setFormErrors);
+  };
+
+  //Update the form value when field changes values
+  const onFieldChange = (fieldName, value) => {
+    setFormValues({ ...formValues, [fieldName]: value });
+  };
 
   //when click submit has changed and it now has a value of true,
   //if there are no form errors, submit the form and update success
@@ -125,10 +135,10 @@ const Form = () => {
             value={formValues.name}
             error={formErrors.name}
             onChange={(e) => {
-              setFormValues({ ...formValues, name: e.target.value });
+              onFieldChange("name", e.target.value);
             }}
             checkFieldError={() => {
-              checkFieldError(formValues, formErrors, "name", setFormErrors);
+              checkAndUpdateFieldError("name");
             }}
           />
         </div>
@@ -140,10 +150,10 @@ const Form = () => {
             value={formValues.email}
             error={formErrors.email}
             onChange={(e) => {
-              setFormValues({ ...formValues, email: e.target.value });
+              onFieldChange("email", e.target.value);
             }}
             checkFieldError={() => {
-              checkFieldError(formValues, formErrors, "email", setFormErrors);
+              checkAndUpdateFieldError("email");
             }}
           />
         </div>
@@ -156,15 +166,10 @@ const Form = () => {
             value={formValues.password}
             error={formErrors.password}
             onChange={(e) => {
-              setFormValues({ ...formValues, password: e.target.value });
+              onFieldChange("password", e.target.value);
             }}
             checkFieldError={() => {
-              checkFieldError(
-                formValues,
-                formErrors,
-                "password",
-                setFormErrors
-              );
+              checkAndUpdateFieldError("password");
             }}
           />
         </div>
@@ -176,15 +181,10 @@ const Form = () => {
             error={formErrors.occupation}
             value={formValues.occupation}
             onChange={(value) => {
-              setFormValues({ ...formValues, occupation: value });
+              onFieldChange("occupation", value);
             }}
             checkFieldError={() => {
-              checkFieldError(
-                formValues,
-                formErrors,
-                "occupation",
-                setFormErrors
-              );
+              checkAndUpdateFieldError("occupation");
             }}
           />
         </div>
@@ -196,10 +196,10 @@ const Form = () => {
             error={formErrors.state}
             value={formValues.state}
             checkFieldError={() => {
-              checkFieldError(formValues, formErrors, "state", setFormErrors);
+              checkAndUpdateFieldError("state");
             }}
             onChange={(value) => {
-              setFormValues({ ...formValues, state: value });
+              onFieldChange("state", value);
             }}
           />
         </div>
