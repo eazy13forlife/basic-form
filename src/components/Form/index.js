@@ -73,6 +73,8 @@ const Form = () => {
     //async function which submits form data
     const submitForm = async () => {
       try {
+        setSuccessMessage("Creating your account...");
+
         await axios.post(
           "https://frontend-take-home.fetchrewards.com/form",
           formValues
@@ -81,7 +83,7 @@ const Form = () => {
         setSuccessMessage("Congrats on creating you account!");
       } catch (e) {
         setSuccessMessage(
-          "There was a problem with our servers. Try again later."
+          "There was a problem creating your account. Try again later."
         );
       } finally {
         setClickSubmit(false);
