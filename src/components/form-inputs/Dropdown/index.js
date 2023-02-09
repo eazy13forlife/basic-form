@@ -72,7 +72,7 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
   const renderedOptions = optionsToShow.map((option, index) => {
     return (
       <button
-        className="Dropdown__option"
+        className="Dropdown__option color-dark"
         type="button"
         key={index}
         onClick={() => {
@@ -99,7 +99,7 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
 
       <button
         type="button"
-        className={`Dropdown__window text-body ${getBorderClass(
+        className={`Dropdown__window text-body color-dark ${getBorderClass(
           visited,
           isFocused,
           error,
