@@ -45,6 +45,7 @@
     cursor: pointer;
     padding: 0.8rem 1rem;
     border: none;
+    color: rgba(var(--color-dark), 1);
     &:hover {
       background-color: rgba(var(--color-dark), 0.04);
     }
