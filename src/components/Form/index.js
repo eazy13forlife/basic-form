@@ -29,7 +29,7 @@ const Form = () => {
 
   //Validates all form fields and updates the formErrors state.
   // Since results of whether there are form errors won't be known
-  // until this function completes, a clickSubmit indicator alerts 
+  // until this function completes, a clickSubmit indicator alerts
   //us form has been submitted and then we can use useEffect to
   // decide whether to send form values to backend
   const onFormSubmit = (e) => {
