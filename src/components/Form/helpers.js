@@ -1,7 +1,7 @@
 import validator from "validator";
 
-// updates an errors object passed in based on the field we're
-//checking for an error in
+// modifies an errors object passed in based on the field we're
+//checking for an error in.
 const updateErrorsObject = (formValues, formErrors, fieldName) => {
   //Set error value to Required if no value provided for the fieldName
   if (!formValues[fieldName]) {
@@ -24,7 +24,7 @@ const updateErrorsObject = (formValues, formErrors, fieldName) => {
 
 //checks for an error in each form field to get the final updated
 //errors object. Then update errors state with this new object
-const onFormSubmit = (formValues, formErrors, updateErrorsState) => {
+const validateAllFields = (formValues, formErrors, updateErrorsState) => {
   const currentErrors = { ...formErrors };
 
   Object.keys(formValues).forEach((field) => {
@@ -47,4 +47,4 @@ const checkFieldError = (
   updateErrorsState(currentErrors);
 };
 
-export { onFormSubmit, checkFieldError };
+export { validateAllFields, checkFieldError };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import validator from "validator";
+import axios from "axios";
 
-import { onFormSubmit, checkFieldError } from "./helpers";
+import { validateAllFields, checkFieldError } from "./helpers";
 import useDropdownOptions from "./useDropdownOptions";
 import Dropdown from "../form-inputs/Dropdown";
 import TextGroup from "../form-inputs/TextGroup";
@@ -25,19 +25,54 @@ const Form = () => {
   //message after successfully submitting form
   const [successMessage, setSuccessMessage] = useState("");
 
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    validateAllFields(formValues, formErrors, setFormErrors);
+
+    setClickSubmit(true);
+  };
+
+  // const checkFieldError = (fieldName) => {
+  //   checkFieldError(formValues, formErrors, fieldName, setFormErrors);
+  // };
+
   //when click submit has changed and it now has a value of true,
-  //if there are no form errors, update success message.Otherwise,
-  // remove success message.
+  //if there are no form errors, submit the form and update success
+  // message.Otherwise, don't submit and remove the success message.
   //we need to set clickSubmit to false again for repeated submit events
   useEffect(() => {
-    if (clickSubmit) {
-      if (!Object.values(formErrors).length) {
-        setSuccessMessage("Congrats on creating you account!");
-      } else {
-        setSuccessMessage("");
-      }
-      setClickSubmit(false);
+    if (!clickSubmit) {
+      return;
     }
+
+    //if there are form errors on front end,don't submit form and
+    //don't show a success message.
+    if (Object.values(formErrors).length) {
+      setSuccessMessage("");
+
+      setClickSubmit(false);
+
+      return;
+    }
+
+    //async function which submits form data
+    const submitForm = async () => {
+      try {
+        await axios.post(
+          "https://frontend-take-home.fetchrewards.com/form",
+          formValues
+        );
+
+        setSuccessMessage("Congrats on creating you account!");
+      } catch (e) {
+        setSuccessMessage("There was a problem with our servers");
+      } finally {
+        setClickSubmit(false);
+      }
+    };
+
+    submitForm();
   }, [clickSubmit]);
 
   // //returns an updated errors object based on the fieldName we're
@@ -82,14 +117,7 @@ const Form = () => {
         <h1 className="text-header-2">Create an Account</h1>
       </header>
 
-      <form
-        className="Form__form-response"
-        onSubmit={(e) => {
-          e.preventDefault();
-          onFormSubmit(formValues, formErrors, setFormErrors);
-          setClickSubmit(true);
-        }}
-      >
+      <form className="Form__form-response" onSubmit={onFormSubmit} action="#">
         <div className="Form__group">
           <TextGroup
             name="name"

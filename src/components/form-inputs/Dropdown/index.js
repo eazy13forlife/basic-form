@@ -80,6 +80,7 @@ const Dropdown = ({
     return (
       <button
         className="Dropdown__option"
+        type="button"
         key={index}
         onClick={() => {
           onOptionClick(option);
