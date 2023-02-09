@@ -129,7 +129,11 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
               setSearchValue(e.target.value);
             }}
           />
-          {renderedOptions.length ? renderedOptions : "Not found"}
+          {renderedOptions.length ? (
+            renderedOptions
+          ) : (
+            <p className="padding-small">Not found</p>
+          )}
         </div>
       ) : null}
 
