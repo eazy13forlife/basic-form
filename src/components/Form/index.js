@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import { validateAllFields, checkFieldError } from "./helpers";
+import { validateAllFields, validateField } from "./helpers";
 import useDropdownOptions from "./useDropdownOptions";
 import Dropdown from "../form-inputs/Dropdown";
 import TextGroup from "../form-inputs/TextGroup";
 import "./index.scss";
+
 const Form = () => {
-  //custom hook. Returns to us all our dropdown options
+  //custom hook. Returns to us all our form dropdown options
   const { occupations, states } = useDropdownOptions();
 
   const [formValues, setFormValues] = useState({
@@ -26,9 +27,11 @@ const Form = () => {
   //message after successfully submitting form
   const [successMessage, setSuccessMessage] = useState("");
 
-  //since you won't get results of whether there are form errors until this function completes,  a clickSubmit indicator alerts
-  //us and then we can use useEffect to decide whether to send
-  //form values.
+  //When fom is submitted, we want to validate all fields and update
+  //the formErrors state. Since you won't get results of whether
+  // there are form errors until this function completes,  a
+  //clickSubmit indicator alerts us and then we can use useEffect
+  // to decide whether to send form values to backend
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -37,10 +40,10 @@ const Form = () => {
     setClickSubmit(true);
   };
 
-  //Tests to see if formField has an error.It is run after a form
+  //Tests to see if a formField has an error. Run after a form
   // field has been visited
-  const checkAndUpdateFieldError = (fieldName) => {
-    checkFieldError(formValues, formErrors, fieldName, setFormErrors);
+  const validate = (fieldName) => {
+    validateField(formValues, formErrors, fieldName, setFormErrors);
   };
 
   //Update the form value when field changes values
@@ -77,7 +80,9 @@ const Form = () => {
 
         setSuccessMessage("Congrats on creating you account!");
       } catch (e) {
-        setSuccessMessage("There was a problem with our servers");
+        setSuccessMessage(
+          "There was a problem with our servers. Try again later."
+        );
       } finally {
         setClickSubmit(false);
       }
@@ -100,14 +105,14 @@ const Form = () => {
         <div className="Form__group">
           <TextGroup
             name="name"
-            label=" Full Name"
+            label=" Full Name*"
             value={formValues.name}
             error={formErrors.name}
             onChange={(e) => {
               onFieldChange("name", e.target.value);
             }}
-            checkFieldError={() => {
-              checkAndUpdateFieldError("name");
+            validate={() => {
+              validate("name");
             }}
           />
         </div>
@@ -115,14 +120,14 @@ const Form = () => {
         <div className="Form__group">
           <TextGroup
             name="email"
-            label=" Email"
+            label=" Email*"
             value={formValues.email}
             error={formErrors.email}
             onChange={(e) => {
               onFieldChange("email", e.target.value);
             }}
-            checkFieldError={() => {
-              checkAndUpdateFieldError("email");
+            validate={() => {
+              validate("email");
             }}
           />
         </div>
@@ -131,14 +136,14 @@ const Form = () => {
           <TextGroup
             type="password"
             name="password"
-            label="Password"
+            label="Password*"
             value={formValues.password}
             error={formErrors.password}
             onChange={(e) => {
               onFieldChange("password", e.target.value);
             }}
-            checkFieldError={() => {
-              checkAndUpdateFieldError("password");
+            validate={() => {
+              validate("password");
             }}
           />
         </div>
@@ -146,14 +151,14 @@ const Form = () => {
         <div className="Form__group">
           <Dropdown
             options={occupations}
-            title="Select your occupation"
+            title="Select your occupation*"
             error={formErrors.occupation}
             value={formValues.occupation}
             onChange={(value) => {
               onFieldChange("occupation", value);
             }}
-            checkFieldError={() => {
-              checkAndUpdateFieldError("occupation");
+            validate={() => {
+              validate("occupation");
             }}
           />
         </div>
@@ -161,11 +166,11 @@ const Form = () => {
         <div className="Form__group">
           <Dropdown
             options={states}
-            title="Select your state"
+            title="Select your state*"
             error={formErrors.state}
             value={formValues.state}
-            checkFieldError={() => {
-              checkAndUpdateFieldError("state");
+            validate={() => {
+              validate("state");
             }}
             onChange={(value) => {
               onFieldChange("state", value);

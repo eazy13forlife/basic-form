@@ -5,14 +5,7 @@ import { getBorderClass } from "../helpers";
 import { classNames } from "./helpers";
 import "./index.scss";
 
-const Dropdown = ({
-  options,
-  title,
-  onChange,
-  value,
-  error,
-  checkFieldError,
-}) => {
+const Dropdown = ({ options, title, onChange, value, error, validate }) => {
   //boolean that lets us know if dropdown is expanded or not
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 
@@ -49,7 +42,7 @@ const Dropdown = ({
   //check if error in this dropdown. This is similar to onBlur
   useEffect(() => {
     if (visited && !isDropdownExpanded) {
-      checkFieldError();
+      validate();
     }
   }, [isDropdownExpanded]);
 
@@ -94,7 +87,7 @@ const Dropdown = ({
   return (
     <div
       className="Dropdown color-primary"
-      onClick={(e) => {
+      onClick={() => {
         if (!visited) {
           setVisited(true);
         }
