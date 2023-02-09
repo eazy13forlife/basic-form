@@ -2,7 +2,7 @@
 Take home test from Fetch Rewards
 
 # Live Url
-https://eazy-e-postings.vercel.app/
+https://fetch-form-1.vercel.app/
 
 ## Images
 ### Desktop
