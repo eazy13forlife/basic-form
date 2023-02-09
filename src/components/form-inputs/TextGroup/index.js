@@ -59,4 +59,5 @@ const TextGroup = ({ type, name, label, error, value, onChange, validate }) => {
 TextGroup.defaultProps = {
   type: "text",
 };
+
 export default TextGroup;
