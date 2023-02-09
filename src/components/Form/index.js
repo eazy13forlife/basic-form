@@ -80,7 +80,7 @@ const Form = () => {
           formValues
         );
 
-        setSuccessMessage("Congrats on creating you account!");
+        setSuccessMessage("Your account has been created!");
       } catch (e) {
         setSuccessMessage(
           "There was a problem creating your account. Try again later."
