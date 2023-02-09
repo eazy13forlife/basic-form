@@ -54,7 +54,7 @@ const Form = () => {
   //when click submit has changed and it now has a value of true,
   //if there are no form errors, submit the form and update success
   // message.Otherwise, don't submit and remove the success message.
-  //we need to set clickSubmit to false again for repeated submit events
+  //we need to set clickSubmit to false again for future submit events
   useEffect(() => {
     if (!clickSubmit) {
       return;
