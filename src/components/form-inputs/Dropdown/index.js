@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BiDownArrow, BiUpArrow } from "react-icons/bi";
+import { ImArrowUp, ImArrowDown } from "react-icons/im";
 
 import { getBorderClass } from "../helpers";
 import { classNames } from "./helpers";
@@ -112,9 +112,9 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
       >
         <span>{value ? value : "Choose"}</span>
         {isDropdownExpanded ? (
-          <BiUpArrow className="Dropdown__icon" />
+          <ImArrowUp className="Dropdown__icon" />
         ) : (
-          <BiDownArrow className="Dropdown__icon" />
+          <ImArrowDown className="Dropdown__icon" />
         )}
       </button>
 
