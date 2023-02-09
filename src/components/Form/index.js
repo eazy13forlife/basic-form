@@ -7,6 +7,7 @@ import Dropdown from "../form-inputs/Dropdown";
 import TextGroup from "../form-inputs/TextGroup";
 import "./index.scss";
 const Form = () => {
+  //custom hook. Returns to us all our dropdown options
   const { occupations, states } = useDropdownOptions();
 
   const [formValues, setFormValues] = useState({
@@ -84,38 +85,6 @@ const Form = () => {
 
     submitForm();
   }, [clickSubmit]);
-
-  // //returns an updated errors object based on the fieldName we're
-  // //checking for an error in
-  // const getErrors = (errors, fieldName) => {
-  //   //Set error value to Required if no value provided for the fieldName
-  //   if (!formValues[fieldName]) {
-  //     errors[fieldName] = "Required";
-  //     return errors;
-  //   }
-
-  //   if (fieldName === "email") {
-  //     //set error value to Invalid if the email fieldName is invalid
-  //     if (!validator.isEmail(formValues.email)) {
-  //       errors["email"] = "Invalid email";
-  //       return errors;
-  //     }
-  //   }
-
-  //   //if no error for this specific fieldName,delete fieldName from
-  //   //errors object if there
-  //   delete errors[fieldName];
-
-  //   return errors;
-  // };
-
-  // const onSubmit = () => {
-  //   const currentErrors = { ...formErrors };
-  //   Object.keys(formValues).forEach((field) => {
-  //     getErrors(currentErrors, field);
-  //   });
-  //   setFormErrors(currentErrors);
-  // };
 
   return (
     <div className="Form">
