@@ -4,7 +4,7 @@ import axios from "axios";
 import { validateAllFields, validateField } from "./helpers";
 import useDropdownOptions from "./useDropdownOptions";
 import Dropdown from "../form-inputs/Dropdown";
-import TextGroup from "../form-inputs/TextGroup";
+import InputTextGroup from "../form-inputs/InputTextGroup";
 import "./index.scss";
 
 const Form = () => {
@@ -105,7 +105,7 @@ const Form = () => {
 
       <form className="Form__form-response" onSubmit={onFormSubmit} action="#">
         <div className="Form__group">
-          <TextGroup
+          <InputTextGroup
             name="name"
             label=" Full Name*"
             value={formValues.name}
@@ -120,7 +120,7 @@ const Form = () => {
         </div>
 
         <div className="Form__group">
-          <TextGroup
+          <InputTextGroup
             name="email"
             label=" Email*"
             value={formValues.email}
@@ -135,7 +135,7 @@ const Form = () => {
         </div>
 
         <div className="Form__group">
-          <TextGroup
+          <InputTextGroup
             type="password"
             name="password"
             label="Password*"

@@ -4,7 +4,15 @@ import { getBorderClass } from "../helpers";
 import { classNames, getLabelClass } from "./helpers";
 import "./index.scss";
 
-const TextGroup = ({ type, name, label, error, value, onChange, validate }) => {
+const InputTextGroup = ({
+  type,
+  name,
+  label,
+  error,
+  value,
+  onChange,
+  validate,
+}) => {
   //boolean that determines if input field has focus. Needed for
   //getBorderClass and getLabelClass functions
   const [isFocused, setIsFocused] = useState(false);
@@ -56,8 +64,8 @@ const TextGroup = ({ type, name, label, error, value, onChange, validate }) => {
   );
 };
 
-TextGroup.defaultProps = {
+InputTextGroup.defaultProps = {
   type: "text",
 };
 
-export default TextGroup;
+export default InputTextGroup;

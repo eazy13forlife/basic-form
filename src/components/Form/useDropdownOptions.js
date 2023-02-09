@@ -6,6 +6,7 @@ const useDropdownOptions = () => {
 
   const [states, setStates] = useState([]);
 
+  //On initial render, get all dropdown options needed for form
   useEffect(() => {
     const getDropdownOptions = async () => {
       const response = await axios.get(
@@ -14,6 +15,8 @@ const useDropdownOptions = () => {
 
       setOccupations(response.data.occupations);
 
+      //States data is stored inside objects, so unpack and place
+      //plainly inside a statesArray
       const statesArray = [];
 
       response.data.states.forEach((stateObject) => {
