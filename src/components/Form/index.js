@@ -24,14 +24,17 @@ const Form = () => {
   //boolean that lets us know if we just clicked submit on form
   const [clickSubmit, setClickSubmit] = useState(false);
 
-  //message after successfully submitting form
-  const [successMessage, setSuccessMessage] = useState("");
+  //message on form that displays when backend server successfully/
+  //unsuccessfully creates user account
+  const [formMessage, setFormMessage] = useState("");
 
-  //Validates all form fields and updates the formErrors state.
+  //When we click submit on our form, we just want to validate all
+  // form fields and update the formErrors state accordingly.
   // Since results of whether there are form errors won't be known
-  // until this function completes, a clickSubmit indicator alerts
-  //us form has been submitted and then we can use useEffect to
-  // decide whether to send form values to backend
+  // until this function completes (setState is asynchronous), a
+  // clickSubmit indicator alerts us that we've clicked submit and
+  // then we can use useEffect to decide whether to actually send
+  // form values to backend
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -41,7 +44,7 @@ const Form = () => {
   };
 
   //Checks to see if a formField has an error. Should be run after a
-  // form field has been visited
+  //form field has been visited
   const validate = (fieldName) => {
     validateField(formValues, formErrors, fieldName, setFormErrors);
   };
@@ -51,38 +54,40 @@ const Form = () => {
     setFormValues({ ...formValues, [fieldName]: value });
   };
 
-  //when click submit has changed and it now has a value of true,
-  //if there are no form errors, submit the form and update success
-  // message.Otherwise, don't submit and remove the success message.
-  //we need to set clickSubmit to false again for future submit events
+  //This useEffect will run every time clickSubmit changes values
+  //If clickSubmit is false, don't run any code, but if it now has a
+  // value of true, this means onFormSubmit function has been run
+  // and our form has been validated. So, we can send our form
+  //details to our backend if there are no form errors
+  //Make sure to set clickSubmit to false again for future submit events
   useEffect(() => {
     if (!clickSubmit) {
       return;
     }
 
-    //if there are form errors on front end,don't submit form and
-    //don't show a success message.
+    //if there are form errors, don't even send form data to backend.
+    //remove form message if it exists.
     if (Object.values(formErrors).length) {
-      setSuccessMessage("");
+      setFormMessage("");
 
       setClickSubmit(false);
 
       return;
     }
 
-    //async function which submits form data
+    //async function which sends form data to backend
     const submitForm = async () => {
       try {
-        setSuccessMessage("Creating your account...");
+        setFormMessage("Creating your account...");
 
         await axios.post(
           "https://frontend-take-home.fetchrewards.com/form",
           formValues
         );
 
-        setSuccessMessage("Your account has been created!");
+        setFormMessage("Your account has been created!");
       } catch (e) {
-        setSuccessMessage(
+        setFormMessage(
           "There was a problem creating your account. Try again later."
         );
       } finally {
@@ -182,7 +187,7 @@ const Form = () => {
 
         <div className="Form__group">
           <p className="text-align-center">
-            {successMessage ? successMessage : null}
+            {formMessage ? formMessage : null}
           </p>
         </div>
 

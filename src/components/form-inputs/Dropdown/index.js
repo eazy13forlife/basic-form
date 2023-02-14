@@ -37,8 +37,8 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
     setOptionsToShow(options);
   }, [options]);
 
-  //when dropdown toggles from open to closed and vice versa,
-  //if dropdown has been visited before and it is now closed,
+  //when dropdown toggles from expanded to closed and vice versa,
+  //if it is now closed and the dropdown has been visited before
   //check if error in this dropdown. This is similar to onBlur
   useEffect(() => {
     if (visited && !isDropdownExpanded) {
