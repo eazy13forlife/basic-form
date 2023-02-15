@@ -1,0 +1,18 @@
+.ValidationGuide {
+  background-color: rgba(var(--color-light), 1);
+  display: block;
+  margin-top: 1rem;
+  position: relative;
+  &__error {
+    display: flex;
+  }
+  &__icon {
+    font-size: 2rem;
+  }
+  &__cancel {
+    color: rgba(var(--color-error), 1);
+  }
+  &__checkmark {
+    color: darkgreen;
+  }
+}

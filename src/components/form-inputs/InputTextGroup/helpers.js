@@ -15,10 +15,10 @@ const getLabelClass = (value, isFocused) => {
 };
 
 const classNames = {
-  error: "TextGroup--error",
-  success: "TextGroup--success",
-  untouched: "TextGroup--untouched",
-  focused: "TextGroup--focus",
+  error: "TextGroup__input--error",
+  success: "TextGroup__input--success",
+  untouched: "TextGroup__input--untouched",
+  focused: "TextGroup__input--focus",
 };
 
 export { classNames, getLabelClass };

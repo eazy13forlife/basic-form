@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { getBorderClass } from "../helpers";
+import ValidationGuideCard from "../../ValidationGuideCard";
 import { classNames, getLabelClass } from "./helpers";
 import "./index.scss";
 
@@ -10,6 +11,7 @@ const InputTextGroup = ({
   label,
   error,
   value,
+  validationGuide,
   onChange,
   validate,
 }) => {
@@ -35,17 +37,15 @@ const InputTextGroup = ({
   };
 
   return (
-    <div
-      className={`TextGroup ${getBorderClass(
-        visited,
-        isFocused,
-        error,
-        classNames
-      )} ${getLabelClass(value, isFocused)}`}
-    >
+    <div className={`TextGroup  ${getLabelClass(value, isFocused)}`}>
       <input
         type={type}
-        className="TextGroup__input"
+        className={`TextGroup__input ${getBorderClass(
+          visited,
+          isFocused,
+          error,
+          classNames
+        )}`}
         name={name}
         value={value}
         onChange={onChange}
@@ -57,9 +57,13 @@ const InputTextGroup = ({
         {label}
       </label>
 
-      <span className="TextGroup__error color-error text-notification">
-        {error ? error : null}
-      </span>
+      {validationGuide ? (
+        <ValidationGuideCard guide={validationGuide} formValue={value} />
+      ) : (
+        <span className="TextGroup__error color-error text-notification">
+          {error}
+        </span>
+      )}
     </div>
   );
 };

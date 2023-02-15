@@ -1,7 +1,7 @@
 .TextGroup {
   position: relative;
   z-index: 1;
-  border-bottom: var(--border-style) transparent;
+
   transition: border-bottom 350ms ease-in;
   &__label {
     position: absolute;
@@ -18,7 +18,20 @@
     position: relative;
     background-color: transparent;
     z-index: 2;
+    border-bottom: var(--border-style) transparent;
     padding: 0.2rem 0rem;
+    &--focus {
+      border-bottom: var(--border-style) rgba(var(--color-secondary), 1);
+    }
+    &--untouched {
+      border-bottom: var(--border-style) var(--color-grey);
+    }
+    &--success {
+      border-bottom: var(--border-style) rgba(var(--color-success), 1);
+    }
+    &--error {
+      border-bottom: var(--border-style) rgba(var(--color-error), 1);
+    }
     &:focus {
       outline: none;
     }
@@ -32,17 +45,5 @@
     .TextGroup__label {
       top: -2.3rem;
     }
-  }
-  &--focus {
-    border-bottom: var(--border-style) rgba(var(--color-secondary), 1);
-  }
-  &--untouched {
-    border-bottom: var(--border-style) var(--color-grey);
-  }
-  &--success {
-    border-bottom: var(--border-style) rgba(var(--color-success), 1);
-  }
-  &--error {
-    border-bottom: var(--border-style) rgba(var(--color-error), 1);
   }
 }

@@ -1,7 +1,8 @@
 import validator from "validator";
 
-const checkPasswordLength = (value, min, max) => {
-  if (value.length < min || value.length > max) {
+//makes sure password is between 8 and 24 characters
+const checkPasswordLength = (value) => {
+  if (value.length < 8 || value.length > 24) {
     return false;
   }
 
@@ -30,17 +31,21 @@ const checkPasswordContainsNumber = (value) => {
   return false;
 };
 
-const passwordErrors = {
+//errors object for different validation we want to track for
+//password field.The key is what we are validating for and the
+// value is an object consisting of the error message and the
+//validateFunction
+const passwordValidation = {
   length: {
-    message: "Must be between 8-24 characters",
+    errorMessage: "Must be between 8-24 characters",
     validateFunction: checkPasswordLength,
   },
   capital: {
-    message: "Must include a capital letter",
+    errorMessage: "Must include a capital letter",
     validateFunction: checkPasswordContainsCapital,
   },
   number: {
-    message: "Must include a number",
+    errorMessage: "Must include a number",
     validateFunction: checkPasswordContainsNumber,
   },
 };
@@ -64,19 +69,18 @@ const updateErrorsObject = (formValues, formErrors, fieldName) => {
   }
 
   if (fieldName === "password") {
-    if (!checkPasswordLength(formValues.password, 8, 24)) {
-      formErrors["password"] = passwordErrors.length.message;
+    if (!checkPasswordLength(formValues.password)) {
+      formErrors["password"] = passwordValidation.length.errorMessage;
       return;
     }
 
     if (!checkPasswordContainsCapital(formValues.password)) {
-      console.log(formValues.password);
-      formErrors["password"] = passwordErrors.capital.message;
+      formErrors["password"] = passwordValidation.capital.errorMessage;
       return;
     }
 
     if (!checkPasswordContainsNumber(formValues.password)) {
-      formErrors["password"] = passwordErrors.number.message;
+      formErrors["password"] = passwordValidation.number.errorMessage;
       return;
     }
   }
@@ -119,4 +123,4 @@ const validateField = (
   updateErrorsState(currentErrors);
 };
 
-export { validateAllFields, validateField, passwordErrors };
+export { validateAllFields, validateField, passwordValidation };
