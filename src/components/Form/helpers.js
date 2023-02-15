@@ -1,5 +1,50 @@
 import validator from "validator";
 
+const checkPasswordLength = (value, min, max) => {
+  if (value.length < min || value.length > max) {
+    return false;
+  }
+
+  return true;
+};
+
+const checkPasswordContainsCapital = (value) => {
+  for (let i = 0; i < value.length; i++) {
+    if (value[0] === value[0].toUpperCase()) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+const checkPasswordContainsNumber = (value) => {
+  for (let i = 0; i < value.length; i++) {
+    const character = value[i];
+
+    if (character && !isNaN(character)) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+const passwordErrors = {
+  length: {
+    message: "Must be between 8-24 characters",
+    validateFunction: checkPasswordLength,
+  },
+  capital: {
+    message: "Must include a capital letter",
+    validateFunction: checkPasswordContainsCapital,
+  },
+  number: {
+    message: "Must include a number",
+    validateFunction: checkPasswordContainsNumber,
+  },
+};
+
 // modifies an errors object passed in (in place), based on the field
 // we're  checking for an error in.
 const updateErrorsObject = (formValues, formErrors, fieldName) => {
@@ -14,6 +59,23 @@ const updateErrorsObject = (formValues, formErrors, fieldName) => {
     // invalid
     if (!validator.isEmail(formValues.email)) {
       formErrors["email"] = "Invalid email";
+      return;
+    }
+  }
+
+  if (fieldName === "password") {
+    if (!checkPasswordLength(formValues.password, 8, 24)) {
+      formErrors["password"] = passwordErrors.length.message;
+      return;
+    }
+
+    if (!checkPasswordContainsCapital(formValues.password)) {
+      formErrors["password"] = passwordErrors.capital.message;
+      return;
+    }
+
+    if (!checkPasswordContainsNumber(formValues.password)) {
+      formErrors["password"] = passwordErrors.number.message;
       return;
     }
   }
@@ -56,4 +118,4 @@ const validateField = (
   updateErrorsState(currentErrors);
 };
 
-export { validateAllFields, validateField };
+export { validateAllFields, validateField, passwordErrors };
