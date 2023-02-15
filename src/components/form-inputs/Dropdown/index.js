@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
 
 import { getBorderClass } from "../helpers";
@@ -6,6 +6,8 @@ import { classNames } from "./helpers";
 import "./index.scss";
 
 const Dropdown = ({ options, title, onChange, value, error, validate }) => {
+  const dropdownRef = useRef();
+
   //boolean that lets us know if dropdown is expanded or not
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 
@@ -30,6 +32,22 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
 
     setIsDropdownExpanded(false);
   };
+
+  //on initial render, add a click event onto our body that closes
+  //dropdown if we click outside of it
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsDropdownExpanded(false);
+      }
+    };
+
+    document.body.addEventListener("click", closeDropdown);
+
+    return () => {
+      window.removeEventListener("click", closeDropdown);
+    };
+  }, []);
 
   //whenever our options prop changes, update our optionsToShow state
   //to include all these options
@@ -86,8 +104,9 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
 
   return (
     <div
+      ref={dropdownRef}
       className="Dropdown color-primary"
-      onClick={() => {
+      onClick={(e) => {
         if (!visited) {
           setVisited(true);
         }
@@ -106,7 +125,7 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
           classNames
         )}`}
         id={title}
-        onClick={() => {
+        onClick={(e) => {
           setIsDropdownExpanded(!isDropdownExpanded);
         }}
       >
