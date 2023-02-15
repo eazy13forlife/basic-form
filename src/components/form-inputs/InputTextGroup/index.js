@@ -34,6 +34,7 @@ const InputTextGroup = ({
 
     return <RuleGuide guide={ruleGuide} formValue={value} />;
   };
+
   const onInputFocus = () => {
     if (!visited) {
       setVisited(true);

@@ -4,9 +4,9 @@ import { MdCancel } from "react-icons/md";
 
 import "./index.scss";
 
-//renders each rule contained in the guide object passed in and
-//checks to see if each rule is met as user types in the form
 const RuleGuide = ({ guide, formValue }) => {
+  //renders each rule contained in the guide object passed in and
+  //checks to see if rule is currently met
   const renderedRules = Object.values(guide).map((ruleObj, index) => {
     const isRuleSatisfied = ruleObj.checkRule(formValue);
 

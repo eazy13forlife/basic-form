@@ -3,10 +3,15 @@
   display: block;
   margin-top: 1rem;
   position: relative;
+
   &__rule {
     display: flex;
+    &:not(:first-child) {
+      margin-top: 0.2rem;
+    }
   }
   &__icon {
+    margin-right: 0.5rem;
     font-size: 2rem;
   }
   &__cancel {
