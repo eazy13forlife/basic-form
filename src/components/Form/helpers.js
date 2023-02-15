@@ -10,7 +10,7 @@ const checkPasswordLength = (value, min, max) => {
 
 const checkPasswordContainsCapital = (value) => {
   for (let i = 0; i < value.length; i++) {
-    if (value[0] === value[0].toUpperCase()) {
+    if (value[i] === value[i].toUpperCase()) {
       return true;
     }
   }
@@ -70,6 +70,7 @@ const updateErrorsObject = (formValues, formErrors, fieldName) => {
     }
 
     if (!checkPasswordContainsCapital(formValues.password)) {
+      console.log(formValues.password);
       formErrors["password"] = passwordErrors.capital.message;
       return;
     }
