@@ -4,13 +4,12 @@ import { MdCancel } from "react-icons/md";
 
 import "./index.scss";
 
-//takes in an object(guide) of different things we are validating
-// for. Object needs to include the validation function and the error
-// message for each rule we want to validate. If successful, show
-//green checkmark, otherwise red
-const ValidationGuideCard = ({ guide, formValue }) => {
-  const renderedGuide = Object.values(guide).map((guide, index) => {
-    const passesValidation = guide.validateFunction(formValue);
+//takes in an object(guide) where the key is the specific rule we
+//are checking for and the value is an object consisting of the
+// validation function and the error message if rule is not satisfied
+const ValidationGuideCard = ({ ruleGuide, formValue }) => {
+  const renderedRules = Object.values(ruleGuide).map((ruleObj, index) => {
+    const passesValidation = ruleObj.validateFunction(formValue);
 
     return (
       <div className="ValidationGuide__error" key={index}>
@@ -20,12 +19,12 @@ const ValidationGuideCard = ({ guide, formValue }) => {
           <MdCancel className="ValidationGuide__icon ValidationGuide__cancel" />
         )}
 
-        <p className="color-dark text-notification">{guide.errorMessage}</p>
+        <p className="color-dark text-notification">{ruleObj.errorMessage}</p>
       </div>
     );
   });
 
-  return <div className="ValidationGuide">{renderedGuide}</div>;
+  return <div className="ValidationGuide">{renderedRules}</div>;
 };
 
 export default ValidationGuideCard;

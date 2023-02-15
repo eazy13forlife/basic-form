@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import {
-  validateAllFields,
-  validateField,
-  passwordValidation,
-} from "./helpers";
+import { validateAllFields, validateField } from "./helpers";
+import { passwordValidation } from "./passwordValidation";
 import useDropdownOptions from "./useDropdownOptions";
 import Dropdown from "../form-inputs/Dropdown";
 import InputTextGroup from "../form-inputs/InputTextGroup";

@@ -23,6 +23,19 @@ const InputTextGroup = ({
   //Needed for getBorderClass.
   const [visited, setVisited] = useState(false);
 
+  const renderValidationGuide = () => {
+    if (!visited) {
+      return null;
+    }
+
+    if (!error && !isFocused) {
+      return null;
+    }
+
+    return (
+      <ValidationGuideCard ruleGuide={validationGuide} formValue={value} />
+    );
+  };
   const onInputFocus = () => {
     if (!visited) {
       setVisited(true);
@@ -57,8 +70,9 @@ const InputTextGroup = ({
         {label}
       </label>
 
+      {/*a validationGuide prop means we will show user a card of the rules this field is checking for.If no validationGuide prop, we just show the single error for this field*/}
       {validationGuide ? (
-        <ValidationGuideCard guide={validationGuide} formValue={value} />
+        renderValidationGuide()
       ) : (
         <span className="TextGroup__error color-error text-notification">
           {error}
