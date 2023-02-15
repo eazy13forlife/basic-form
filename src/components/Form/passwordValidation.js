@@ -9,7 +9,9 @@ const checkPasswordLength = (value) => {
 
 const checkPasswordContainsCapital = (value) => {
   for (let i = 0; i < value.length; i++) {
-    if (value[i] === value[i].toUpperCase()) {
+    const character = value[i];
+
+    if (isNaN(character) && character === character.toUpperCase()) {
       return true;
     }
   }
