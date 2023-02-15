@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { validateAllFields, validateField } from "./helpers";
-import { passwordValidation } from "./passwordValidation";
+import { passwordRules } from "./passwordValidation";
 import useDropdownOptions from "./useDropdownOptions";
 import Dropdown from "../form-inputs/Dropdown";
 import InputTextGroup from "../form-inputs/InputTextGroup";
@@ -146,7 +146,7 @@ const Form = () => {
             name="password"
             label="Password*"
             value={formValues.password}
-            validationGuide={passwordValidation}
+            ruleGuide={passwordRules}
             error={formErrors.password}
             onChange={(e) => {
               onFieldChange("password", e.target.value);

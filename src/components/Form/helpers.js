@@ -4,7 +4,7 @@ import {
   checkPasswordLength,
   checkPasswordContainsCapital,
   checkPasswordContainsNumber,
-  passwordValidation,
+  passwordRules,
 } from "./passwordValidation";
 
 // modifies an errors object passed in (in place), based on the field
@@ -27,17 +27,17 @@ const updateErrorsObject = (formValues, formErrors, fieldName) => {
 
   if (fieldName === "password") {
     if (!checkPasswordLength(formValues.password)) {
-      formErrors["password"] = passwordValidation.length.errorMessage;
+      formErrors["password"] = passwordRules.length.ruleDescription;
       return;
     }
 
     if (!checkPasswordContainsCapital(formValues.password)) {
-      formErrors["password"] = passwordValidation.capitalLetter.errorMessage;
+      formErrors["password"] = passwordRules.capitalLetter.ruleDescription;
       return;
     }
 
     if (!checkPasswordContainsNumber(formValues.password)) {
-      formErrors["password"] = passwordValidation.includesNumber.errorMessage;
+      formErrors["password"] = passwordRules.includesNumber.ruleDescription;
       return;
     }
   }

@@ -1,9 +1,9 @@
-.ValidationGuide {
+.RuleGuide {
   background-color: rgba(var(--color-light), 1);
   display: block;
   margin-top: 1rem;
   position: relative;
-  &__error {
+  &__rule {
     display: flex;
   }
   &__icon {

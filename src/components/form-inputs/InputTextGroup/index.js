@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { getBorderClass } from "../helpers";
-import ValidationGuideCard from "../../ValidationGuideCard";
+import RuleGuide from "../../RuleGuide";
 import { classNames, getLabelClass } from "./helpers";
 import "./index.scss";
 
@@ -11,7 +11,7 @@ const InputTextGroup = ({
   label,
   error,
   value,
-  validationGuide,
+  ruleGuide,
   onChange,
   validate,
 }) => {
@@ -23,7 +23,7 @@ const InputTextGroup = ({
   //Needed for getBorderClass.
   const [visited, setVisited] = useState(false);
 
-  const renderValidationGuide = () => {
+  const renderRuleGuide = () => {
     if (!visited) {
       return null;
     }
@@ -32,9 +32,7 @@ const InputTextGroup = ({
       return null;
     }
 
-    return (
-      <ValidationGuideCard ruleGuide={validationGuide} formValue={value} />
-    );
+    return <RuleGuide guide={ruleGuide} formValue={value} />;
   };
   const onInputFocus = () => {
     if (!visited) {
@@ -71,8 +69,8 @@ const InputTextGroup = ({
       </label>
 
       {/*a validationGuide prop means we will show user a card of the rules this field is checking for.If no validationGuide prop, we just show the single error for this field*/}
-      {validationGuide ? (
-        renderValidationGuide()
+      {ruleGuide ? (
+        renderRuleGuide()
       ) : (
         <span className="TextGroup__error color-error text-notification">
           {error}

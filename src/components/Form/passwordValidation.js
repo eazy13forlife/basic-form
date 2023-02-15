@@ -31,20 +31,20 @@ const checkPasswordContainsNumber = (value) => {
 
 //an object for different rules we want to check for in the
 //password field.The key is the rule we are checking for and the
-// value is an object consisting of the error message if the rule is
-// not satisfied and the validateFunction
-const passwordValidation = {
+// value is an object consisting of the rule description and a
+//function to determine if the rule is satisfied
+const passwordRules = {
   length: {
-    errorMessage: "Must be between 8-24 characters",
-    validateFunction: checkPasswordLength,
+    description: "Must be between 8-24 characters",
+    checkRule: checkPasswordLength,
   },
   capitalLetter: {
-    errorMessage: "Must include a capital letter",
-    validateFunction: checkPasswordContainsCapital,
+    description: "Must include a capital letter",
+    checkRule: checkPasswordContainsCapital,
   },
   includesNumber: {
-    errorMessage: "Must include a number",
-    validateFunction: checkPasswordContainsNumber,
+    description: "Must include a number",
+    checkRule: checkPasswordContainsNumber,
   },
 };
 
@@ -52,5 +52,5 @@ export {
   checkPasswordLength,
   checkPasswordContainsCapital,
   checkPasswordContainsNumber,
-  passwordValidation,
+  passwordRules,
 };
