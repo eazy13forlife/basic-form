@@ -27,17 +27,17 @@ const updateErrorsObject = (formValues, formErrors, fieldName) => {
 
   if (fieldName === "password") {
     if (!checkPasswordLength(formValues.password)) {
-      formErrors["password"] = passwordRules.length.ruleDescription;
+      formErrors["password"] = passwordRules.length.description;
       return;
     }
 
     if (!checkPasswordContainsCapital(formValues.password)) {
-      formErrors["password"] = passwordRules.capitalLetter.ruleDescription;
+      formErrors["password"] = passwordRules.capitalLetter.description;
       return;
     }
 
     if (!checkPasswordContainsNumber(formValues.password)) {
-      formErrors["password"] = passwordRules.includesNumber.ruleDescription;
+      formErrors["password"] = passwordRules.includesNumber.description;
       return;
     }
   }
