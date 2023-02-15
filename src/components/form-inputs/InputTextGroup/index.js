@@ -18,7 +18,7 @@ const InputTextGroup = ({
   const [isFocused, setIsFocused] = useState(false);
 
   //boolean that determines if input field has been visited once.
-  //Needed for getBorderClass and getLabelClass functions
+  //Needed for getBorderClass.
   const [visited, setVisited] = useState(false);
 
   const onInputFocus = () => {

@@ -23,7 +23,7 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
   //Boolean to let us know if dropdown has been clicked at lease once
   const [visited, setVisited] = useState(false);
 
-  //Boolean to let us know if dropdown currently has focued
+  //Boolean to let us know if dropdown currently has focused
   const [isFocused, setIsFocused] = useState(false);
 
   //when option is clicked, update value and close dropdown
@@ -106,7 +106,7 @@ const Dropdown = ({ options, title, onChange, value, error, validate }) => {
     <div
       ref={dropdownRef}
       className="Dropdown color-primary"
-      onClick={(e) => {
+      onClick={() => {
         if (!visited) {
           setVisited(true);
         }
