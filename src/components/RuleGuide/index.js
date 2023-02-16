@@ -6,7 +6,7 @@ import "./index.scss";
 
 const RuleGuide = ({ guide, formValue }) => {
   //renders each rule contained in the guide object passed in and
-  //checks to see if rule is currently met
+  //checks to see if rule is currently met and display correct icon
   const renderedRules = Object.values(guide).map((ruleObj, index) => {
     const isRuleSatisfied = ruleObj.checkRule(formValue);
 

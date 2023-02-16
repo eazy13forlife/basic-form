@@ -23,18 +23,6 @@ const InputTextGroup = ({
   //Needed for getBorderClass.
   const [visited, setVisited] = useState(false);
 
-  const renderRuleGuide = () => {
-    const element = <RuleGuide guide={ruleGuide} formValue={value} />;
-
-    //only display rule guide if input has focus or if there is an
-    //error in this field
-    if (isFocused || error) {
-      return element;
-    }
-
-    return null;
-  };
-
   const onInputFocus = () => {
     if (!visited) {
       setVisited(true);
@@ -46,6 +34,20 @@ const InputTextGroup = ({
     setIsFocused(false);
 
     validate(name);
+  };
+
+  //if ruleGuide exists, determine when RuleGuide component should be
+  //displayed
+  const renderRuleGuide = () => {
+    const element = <RuleGuide guide={ruleGuide} formValue={value} />;
+
+    //only display rule guide if input has focus or if there is an
+    //error in this field
+    if (isFocused || error) {
+      return element;
+    }
+
+    return null;
   };
 
   return (
