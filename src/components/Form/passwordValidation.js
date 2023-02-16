@@ -11,7 +11,7 @@ const checkPasswordContainsCapital = (value) => {
   for (let i = 0; i < value.length; i++) {
     const character = value[i];
 
-    if (isNaN(character) && character === character.toUpperCase()) {
+    if (character.match(/[A-Z]/)) {
       return true;
     }
   }
@@ -23,7 +23,7 @@ const checkPasswordContainsNumber = (value) => {
   for (let i = 0; i < value.length; i++) {
     const character = value[i];
 
-    if (character && !isNaN(character)) {
+    if (character.match(/[0-9]/)) {
       return true;
     }
   }
