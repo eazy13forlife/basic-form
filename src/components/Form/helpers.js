@@ -8,7 +8,7 @@ import {
 } from "./passwordValidation";
 
 // modifies an errors object passed in (in place), based on the field
-// we're  checking for an error in.
+// we're checking for an error in.
 const updateErrorsObject = (formValues, formErrors, fieldName) => {
   //Set error value to Required if no value provided for the fieldName
   if (!formValues[fieldName]) {
@@ -53,8 +53,8 @@ const updateErrorsObject = (formValues, formErrors, fieldName) => {
 //formErrors state
 const validateAllFields = (formValues, formErrors, updateErrorsState) => {
   //create a new errors object from our current formErrors object
-  //since updateErrorsObject performs in place modification of an
-  // object
+  //because updateErrorsState, which needs to update our
+  // form errors state with a brand new object
   const currentErrors = { ...formErrors };
 
   Object.keys(formValues).forEach((field) => {

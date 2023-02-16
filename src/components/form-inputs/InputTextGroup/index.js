@@ -24,15 +24,15 @@ const InputTextGroup = ({
   const [visited, setVisited] = useState(false);
 
   const renderRuleGuide = () => {
-    if (!visited) {
-      return null;
+    const element = <RuleGuide guide={ruleGuide} formValue={value} />;
+
+    //only display rule guide if input has focus or if there is an
+    //error in this field
+    if (isFocused || error) {
+      return element;
     }
 
-    if (!error && !isFocused) {
-      return null;
-    }
-
-    return <RuleGuide guide={ruleGuide} formValue={value} />;
+    return null;
   };
 
   const onInputFocus = () => {
@@ -69,7 +69,7 @@ const InputTextGroup = ({
         {label}
       </label>
 
-      {/*a validationGuide prop means we will show user a card of the rules this field is checking for.If no validationGuide prop, we just show the single error for this field*/}
+      {/*if a ruleGuide exists, call renderRuleGuide to determine when ruleGuide component should be displayed. If no ruleGuide prop, we just show the single error for this field*/}
       {ruleGuide ? (
         renderRuleGuide()
       ) : (
