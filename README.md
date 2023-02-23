@@ -6,7 +6,8 @@ https://fetch-form-1.vercel.app/
 
 ## Images
 ### Desktop
-![screencapture-fetch-form-1-vercel-app-2023-02-08-18_14_01](https://user-images.githubusercontent.com/72288176/217699547-4070785b-7b1b-4ef6-bb21-eec81454f01d.png)
+![screencapture-fetch-form-1-vercel-app-2023-02-23-09_06_14](https://user-images.githubusercontent.com/72288176/220978918-646536af-e357-4af8-ba7c-ee8d0bfe1091.png)
+
 
 ## Technologies
 * React
