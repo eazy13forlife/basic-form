@@ -1,5 +1,5 @@
 # Fetch Form
-Take home test from Fetch Rewards
+A clean and minimalist form
 
 # Live Url
 https://fetch-form-1.vercel.app/
@@ -22,7 +22,7 @@ https://fetch-form-1.vercel.app/
 
 ## My Process
 ### Design
-I created this design on figma first. I was going for a clean and minimalist design, and I also figured it would be cool to use Fetch company colors. In addition, I  wanted to add some animation, which I was able to do for the input labels, slightly moving them up when a user types. I also added some transitions for the changing of the color indicators and a press down effect on the submit button.
+I created this design on figma first. I was going for a clean and minimalist design. In addition, I  wanted to add some animation, which I was able to do for the input labels, slightly moving them up when a user types. I also added some transitions for the changing of the color indicators and a press down effect on the submit button.
 
 ### Code
 So normally, I have been using formik a lot recently for my projects, because I find it easy to use and it makes error handling in forms and creating custom form components pretty easy. But, I figured for this assignment there weren't too many form values to keep track of, and I wanted to make sure I show that I understand the nuts and bolts of how React works, so I just made use of simple react state. Doing this project vanilla, so to speak, reminded me how much I appreciate these form libraries and just libraries in general. Besides this, I tried to go for a clean project strutcture, comment appropriately and make frequent commits.
