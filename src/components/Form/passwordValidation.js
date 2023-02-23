@@ -32,9 +32,7 @@ const checkPasswordContainsNumber = (value) => {
 };
 
 //an object for different rules we want to check for in the
-//password field.The key is the rule we are checking for and the
-// value is an object consisting of the rule description and a
-//function to determine if the rule is satisfied
+//password field where the key is the rule we are checking for
 const passwordRules = {
   length: {
     description: "Must be between 8-24 characters",

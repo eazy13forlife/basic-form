@@ -9,21 +9,28 @@ const useDropdownOptions = () => {
   //On initial render, get all dropdown options needed for form
   useEffect(() => {
     const getDropdownOptions = async () => {
-      const response = await axios.get(
-        "https://frontend-take-home.fetchrewards.com/form"
-      );
+      try {
+        const response = await axios.get(
+          "https://frontend-take-home.fetchrewards.com/form"
+        );
 
-      setOccupations(response.data.occupations);
+        setOccupations(response.data.occupations);
 
-      //States data is stored inside objects, so unpack and place
-      //plainly inside statesArray
-      const statesArray = [];
+        //States data is stored inside objects, so unpack and place
+        //plainly inside statesArray
+        const statesArray = [];
 
-      response.data.states.forEach((stateObject) => {
-        statesArray.push(`${stateObject.name}, ${stateObject.abbreviation}`);
-      });
+        response.data.states.forEach((stateObject) => {
+          statesArray.push(`${stateObject.name}, ${stateObject.abbreviation}`);
+        });
 
-      setStates(statesArray);
+        setStates(statesArray);
+      } catch (e) {
+        if (e.response.status === 500) {
+          setOccupations(false);
+          setStates(false);
+        }
+      }
     };
 
     getDropdownOptions();

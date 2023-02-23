@@ -31,11 +31,7 @@ const Form = () => {
 
   //When we click submit on our form, we just want to validate all
   // form fields and update the formErrors state accordingly.
-  // Since results of whether there are form errors won't be known
-  // until this function completes (setState is asynchronous), a
-  // clickSubmit indicator alerts us that we've clicked submit and
-  // then we can use useEffect to decide whether to actually send
-  // form values to backend
+  // asynchronous so use clickSubmit as indicator
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -56,10 +52,7 @@ const Form = () => {
   };
 
   //This useEffect will run every time clickSubmit changes values
-  //If clickSubmit is false, don't run any code, but if it now has a
-  // value of true, this means onFormSubmit function has been run
-  // and our form has been validated. So, we can send our form
-  //details to our backend if there are no form errors
+  //If clickSubmit is true and no form errors, send form data to backend
   //Make sure to set clickSubmit to false again for future submit events
   useEffect(() => {
     if (!clickSubmit) {
@@ -101,9 +94,7 @@ const Form = () => {
 
   return (
     <div className="Form">
-      <div className="Form__logo text-header-1 color-primary">
-        fetch rewards
-      </div>
+      <div className="Form__logo text-header-1 color-primary">form</div>
 
       <header className="Form__create-account">
         <h1 className="text-header-2">Create an Account</h1>
