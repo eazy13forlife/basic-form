@@ -52,7 +52,7 @@ const Form = () => {
   };
 
   //This useEffect will run every time clickSubmit changes values
-  //If clickSubmit is true and no form errors, send form data to backend
+  //If clickSubmit is true and no form errors, send form data to backend.
   //Make sure to set clickSubmit to false again for future submit events
   useEffect(() => {
     if (!clickSubmit) {
